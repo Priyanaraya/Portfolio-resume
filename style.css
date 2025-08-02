@@ -47,12 +47,12 @@ header{
     font-size:4rem ;
     padding-bottom: 1rem;
     color: #111;
-    text-transform: uppercase;
+    text-transform:lowercase;
 }
 
 .heading span{
     color:var(--main-color);
-    text-transform: uppercase;
+    text-transform: lowercase;
 }
 
 .btn{
@@ -72,13 +72,13 @@ header{
 
 
 header .logo{
-    text-transform: uppercase;
+    text-transform:lowercase;
     color:#fff;
     font-size:3rem;
     font-weight: bolder;
 }
 header .logo span{
-    text-transform: uppercase;
+    text-transform: lowercase;
     color:var(--main-color);
 }
 header .navbar a{
@@ -147,8 +147,10 @@ header .follow a:hover{
 }
 
 .home .image img{
-    width: 60%;
-    border: 2rem solid #111;
+    position: relative;
+    left:80px;
+    width: 50%;
+    border:8px solid #111;
     border-radius: .8rem;
 }
 .home .content{
@@ -159,13 +161,13 @@ header .follow a:hover{
     color: var(--main-color);
 
 }
-.home .content h3{
+.home .content h2{
     font-size: 4rem;
     color: #111;
     
 }
-.home .content h3 span{
-    text-transform: uppercase;
+.home .content h2 span {
+    text-transform:lowercase;
     color: var(--main-color);
 }
 .home  .content .info{
@@ -192,7 +194,7 @@ header .follow a:hover{
     height: 80%;
     width: 60%;
     object-fit: cover;
-    border: 1rem solid #fff;
+    border: 0.5rem solid #0e0e0e;
     border-radius: .5rem;
     box-shadow: 0.5rem 1rem rgba(0, 0, 0, .1);
 

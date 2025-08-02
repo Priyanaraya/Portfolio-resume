@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Employee List</title>
+  <style>
+    body {
+      font-family: Arial;
+      padding: 20px;
+    }
+    input, button {
+      margin: 5px;
+      padding: 5px;
+    }
+    table, th, td {
+      border: 1px solid #ccc;
+      border-collapse: collapse;
+      padding: 8px;
+    }
+  </style>
+</head>
+<body>
+
+<h3>Employee Manager</h3>
+
+<!-- Input fields -->
+Name: <input type="text" id="name">
+Age: <input type="number" id="age">
+Designation: <input type="text" id="designation">
+<button onclick="addOrUpdate()">Add/Update</button>
+
+<!-- Sort buttons -->
+<br><br>
+<button onclick="sortByName()">Sort by Name</button>
+<button onclick="sortByAge()">Sort by Age</button>
+
+<!-- Table display -->
+<table id="employeeTable">
+  <thead>
+    <tr>
+      <th>Name</th><th>Age</th><th>Designation</th><th>Actions</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<script>
+  let employees = [
+    { name: "John", age: 25, designation: "Developer" },
+    { name: "Alice", age: 30, designation: "Designer" },
+    { name: "Bob", age: 22, designation: "Tester" },
+    { name: "Mark", age: 35, designation: "Manager" },
+    { name: "Sara", age: 28, designation: "HR" }
+  ];
+
+  let editingIndex = -1;
+
+  function renderTable() {
+    const tbody = document.querySelector("#employeeTable tbody");
+    tbody.innerHTML = "";
+    employees.forEach((emp, index) => {
+      tbody.innerHTML += `
+        <tr>
+          <td>${emp.name}</td>
+          <td>${emp.age}</td>
+          <td>${emp.designation}</td>
+          <td>
+            <button onclick="editEmployee(${index})">Edit</button>
+            <button onclick="deleteEmployee(${index})">Delete</button>
+          </td>
+        </tr>
+      `;
+    });
+  }
+
+  function addOrUpdate() {
+    const name = document.getElementById("name").value.trim();
+    const age = parseInt(document.getElementById("age").value);
+    const designation = document.getElementById("designation").value.trim();
+
+    if (!name || !age || !designation) {
+      alert("Please fill all fields");
+      return;
+    }
+
+    const newEmp = { name, age, designation };
+
+    if (editingIndex >= 0) {
+      employees[editingIndex] = newEmp;
+      editingIndex = -1;
+    } else {
+      employees.push(newEmp);
+    }
+
+    clearForm();
+    renderTable();
+  }
+
+  function editEmployee(index) {
+    const emp = employees[index];
+    document.getElementById("name").value = emp.name;
+    document.getElementById("age").value = emp.age;
+    document.getElementById("designation").value = emp.designation;
+    editingIndex = index;
+  }
+
+  function deleteEmployee(index) {
+    employees.splice(index, 1);
+    renderTable();
+  }
+
+  function sortByName() {
+    employees.sort((a, b) => a.name.localeCompare(b.name));
+    renderTable();
+  }
+
+  function sortByAge() {
+    employees.sort((a, b) => a.age - b.age);
+    renderTable();
+  }
+
+  function clearForm() {
+    document.getElementById("name").value = "";
+    document.getElementById("age").value = "";
+    document.getElementById("designation").value = "";
+  }
+
+  // Initial render
+  renderTable();
+</script>
+
+</body>
+</html>
