@@ -166,7 +166,7 @@ header .follow a:hover{
     color: #111;
     
 }
-.home .content h2 span {
+.home .content h2 span{
     text-transform:lowercase;
     color: var(--main-color);
 }
